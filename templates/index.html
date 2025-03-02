@@ -144,9 +144,20 @@
                 <div class="" id="student">Author: Arunendra Pratap Singh</div>
                 <div class="" id="professor">Guide: Prof. Damodar Maity </div>
             </div>
-
         </div>
         <form action="/predict" method="post">
+            <div class="input-container">
+                <div class="input">
+                    <label for="type_of_cement">Type of cement</label>
+                    <input type="text" id="type_of_cement" name="type_of_cement" placeholder="Opc / PPC / Others"
+                        required>
+                </div>
+                <div class="input">
+                    <label for="grade_of_concrete">Grade of concrete</label>
+                    <input type="grade_of_concrete" id="grade_of_concrete" name="grade_of_concrete"
+                        placeholder="Grade of concrete" required>
+                </div>
+            </div>
             <div class="input-container">
                 <div class="input">
                     <label for="cement">Cement (kg/m^3)</label>
@@ -191,14 +202,15 @@
             <div class="btn-container">
                 <button type="submit">Predict</button>
             </div>
-
         </form>
 
         <div class="prediction-text">
-            <p>{{ prediction_text }}</p>
+            <p>{{ ratio }}</p>
+            <p>{{ strength_7_days }}</p>
+            <p>{{ strength_28_days }}</p>
+            <p>{{ strength_entered_age }}</p>
         </div>
     </div>
-
 </body>
 
 </html>
