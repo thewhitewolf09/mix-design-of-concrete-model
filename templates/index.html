@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Strength Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            margin-bottom: 40px;
+        }
+
+        .box {
+            width: 80%;
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .nav {
+            padding: 10px 0;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .auth {
+            text-align: right;
+        }
+
+        .heading {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .subheading {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        #student,
+        #professor {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .input {
+            margin-bottom: 15px;
+        }
+
+        .input label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .input input {
+            width: 30rem;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fafafa;
+            transition: border-color 0.3s ease;
+        }
+
+        .input input:focus {
+            border-color: #0066cc;
+            outline: none;
+        }
+
+        .input-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .input-container .input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        button {
+            text-align: center;
+            width: 50rem;
+            padding: 12px;
+            font-size: 1.1rem;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn-container {
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        .prediction-text {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+
+        img {
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="nav">
+            <div class="main-nav">
+                <img src="static/iit_kgp.jpg" alt="">
+                <div class="heading">IIT KHARAGPUR</div>
+                <div class="subheading">Department of Civil Engineering</div>
+            </div>
+            <div class="auth">
+                <div class="" id="student">Author: Arunendra Pratap Singh</div>
+                <div class="" id="professor">Guide: Prof. Damodar Maity </div>
+            </div>
+        </div>
+        <form action="/predict" method="post">
+            <div class="input-container">
+                <div class="input">
+                    <label for="type_of_cement">Type of cement</label>
+                    <input type="text" id="type_of_cement" name="type_of_cement" placeholder="Opc / PPC / Others"
+                        required>
+                </div>
+                <div class="input">
+                    <label for="grade_of_concrete">Grade of concrete</label>
+                    <input type="grade_of_concrete" id="grade_of_concrete" name="grade_of_concrete"
+                        placeholder="Grade of concrete" required>
+                </div>
+            </div>
+            <div class="input-container">
+                <div class="input">
+                    <label for="cement">Cement (kg/m^3)</label>
+                    <input type="text" id="cement" name="cement" placeholder="Cement" required>
+                </div>
+                <div class="input">
+                    <label for="slag">Blast Furnace Slag (kg/m^3)</label>
+                    <input type="text" id="slag" name="slag" placeholder="Blast Furnace Slag" required>
+                </div>
+            </div>
+            <div class="input-container">
+                <div class="input">
+                    <label for="ash">Fly Ash (kg/m^3)</label>
+                    <input type="text" id="ash" name="ash" placeholder="Fly Ash" required>
+                </div>
+                <div class="input">
+                    <label for="water">Water (kg/m^3)</label>
+                    <input type="text" id="water" name="water" placeholder="Water" required>
+                </div>
+            </div>
+            <div class="input-container">
+                <div class="input">
+                    <label for="superplastic">Superplasticizer (kg/m^3)</label>
+                    <input type="text" id="superplastic" name="superplastic" placeholder="Superplasticizer" required>
+                </div>
+                <div class="input">
+                    <label for="coarseagg">Coarse Aggregate (kg/m^3)</label>
+                    <input type="text" id="coarseagg" name="coarseagg" placeholder="Coarse Aggregate" required>
+                </div>
+            </div>
+            <div class="input-container">
+                <div class="input">
+                    <label for="fineagg">Fine Aggregate (kg/m^3)</label>
+                    <input type="text" id="fineagg" name="fineagg" placeholder="Fine Aggregate" required>
+                </div>
+                <div class="input">
+                    <label for="age">Age</label>
+                    <input type="text" id="age" name="age" placeholder="Age" required>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+
+        <div class="prediction-text">
+            <p>{{ ratio }}</p>
+            <p>{{ strength_7_days }}</p>
+            <p>{{ strength_28_days }}</p>
+            <p>{{ strength_entered_age }}</p>
+        </div>
+    </div>
+</body>
+
+</html>
