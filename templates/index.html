@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Concrete Strength Predictor</title>
     <style>
         body {
@@ -36,6 +36,7 @@
         .main-nav {
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
         .auth {
@@ -88,6 +89,7 @@
         .input-container {
             display: flex;
             flex-wrap: wrap;
+            gap: 20px;
         }
 
         .input-container .input {
@@ -136,66 +138,71 @@
     <div class="box">
         <div class="nav">
             <div class="main-nav">
-                <img src="static/iit_kgp.jpg" alt="">
+                <img src="static/iit_kgp.jpg" alt="" />
                 <div class="heading">IIT KHARAGPUR</div>
                 <div class="subheading">Department of Civil Engineering</div>
             </div>
             <div class="auth">
-                <div class="" id="student">Author: Arunendra Pratap Singh</div>
-                <div class="" id="professor">Guide: Prof. Damodar Maity </div>
+                <div id="student">Author: Arunendra Pratap Singh</div>
+                <div id="professor">Guide: Prof. Damodar Maity</div>
             </div>
         </div>
+
         <form action="/predict" method="post">
             <div class="input-container">
                 <div class="input">
                     <label for="type_of_cement">Type of cement</label>
-                    <input type="text" id="type_of_cement" name="type_of_cement" placeholder="Opc / PPC / Others"
-                        required>
+                    <input type="text" id="type_of_cement" name="type_of_cement" placeholder="OPC / PPC / Others"
+                        required value="{{ form_values['type_of_cement'] }}">
                 </div>
                 <div class="input">
                     <label for="grade_of_concrete">Grade of concrete</label>
-                    <input type="grade_of_concrete" id="grade_of_concrete" name="grade_of_concrete"
-                        placeholder="Grade of concrete" required>
+                    <input type="text" id="grade_of_concrete" name="grade_of_concrete"
+                        placeholder="e.g. M20, M25" required value="{{ form_values['grade_of_concrete'] }}">
                 </div>
             </div>
+
             <div class="input-container">
                 <div class="input">
-                    <label for="cement">Cement (kg/m^3)</label>
-                    <input type="text" id="cement" name="cement" placeholder="Cement" required>
+                    <label for="cement">Cement (kg/m³)</label>
+                    <input type="text" id="cement" name="cement" placeholder="Cement" required value="{{ form_values['cement'] }}">
                 </div>
                 <div class="input">
-                    <label for="slag">Blast Furnace Slag (kg/m^3)</label>
-                    <input type="text" id="slag" name="slag" placeholder="Blast Furnace Slag" required>
+                    <label for="slag">Blast Furnace Slag (kg/m³)</label>
+                    <input type="text" id="slag" name="slag" placeholder="Blast Furnace Slag" required value="{{ form_values['slag'] }}">
                 </div>
             </div>
+
             <div class="input-container">
                 <div class="input">
-                    <label for="ash">Fly Ash (kg/m^3)</label>
-                    <input type="text" id="ash" name="ash" placeholder="Fly Ash" required>
+                    <label for="ash">Fly Ash (kg/m³)</label>
+                    <input type="text" id="ash" name="ash" placeholder="Fly Ash" required value="{{ form_values['ash'] }}">
                 </div>
                 <div class="input">
-                    <label for="water">Water (kg/m^3)</label>
-                    <input type="text" id="water" name="water" placeholder="Water" required>
+                    <label for="water">Water (kg/m³)</label>
+                    <input type="text" id="water" name="water" placeholder="Water" required value="{{ form_values['water'] }}">
                 </div>
             </div>
+
             <div class="input-container">
                 <div class="input">
-                    <label for="superplastic">Superplasticizer (kg/m^3)</label>
-                    <input type="text" id="superplastic" name="superplastic" placeholder="Superplasticizer" required>
+                    <label for="superplastic">Superplasticizer (kg/m³)</label>
+                    <input type="text" id="superplastic" name="superplastic" placeholder="Superplasticizer" required value="{{ form_values['superplastic'] }}">
                 </div>
                 <div class="input">
-                    <label for="coarseagg">Coarse Aggregate (kg/m^3)</label>
-                    <input type="text" id="coarseagg" name="coarseagg" placeholder="Coarse Aggregate" required>
+                    <label for="coarseagg">Coarse Aggregate (kg/m³)</label>
+                    <input type="text" id="coarseagg" name="coarseagg" placeholder="Coarse Aggregate" required value="{{ form_values['coarseagg'] }}">
                 </div>
             </div>
+
             <div class="input-container">
                 <div class="input">
-                    <label for="fineagg">Fine Aggregate (kg/m^3)</label>
-                    <input type="text" id="fineagg" name="fineagg" placeholder="Fine Aggregate" required>
+                    <label for="fineagg">Fine Aggregate (kg/m³)</label>
+                    <input type="text" id="fineagg" name="fineagg" placeholder="Fine Aggregate" required value="{{ form_values['fineagg'] }}">
                 </div>
                 <div class="input">
-                    <label for="age">Age</label>
-                    <input type="text" id="age" name="age" placeholder="Age" required>
+                    <label for="age">Age (days)</label>
+                    <input type="text" id="age" name="age" placeholder="e.g. 7, 28" required value="{{ form_values['age'] }}">
                 </div>
             </div>
 
